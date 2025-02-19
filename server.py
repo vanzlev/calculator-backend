@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -13,4 +14,5 @@ def calculate():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 10000))  # Use Render's assigned port
+    app.run(host='0.0.0.0', port=port)
